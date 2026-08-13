@@ -187,72 +187,61 @@ Ví dụ dưới đây phát file số `00001` trong thư mục Root và đọc 
 
 ```cpp
 #include <Wire.h>
+#include <MKE_I2C_MP3.h>
 
-#define MP3_I2C_ADDRESS 50  // 0x32 - Địa chỉ mặc định
+MKE_I2C_MP3 mp3;
 
-void sendI2CCommand(uint8_t address, uint8_t modeId, uint32_t value) {
-  Wire.beginTransmission(address);
-
-  Wire.write(address);
-  Wire.write(modeId);
-
-  // Value32 - Big Endian
-  Wire.write((uint8_t)(value >> 24));
-  Wire.write((uint8_t)(value >> 16));
-  Wire.write((uint8_t)(value >> 8));
-  Wire.write((uint8_t)(value & 0xFF));
-
-  Wire.endTransmission();
-}
-
-uint32_t readI2CValue(uint8_t address, uint8_t modeId) {
-  sendI2CCommand(address, modeId, 0);
-
-  delay(10);
-
-  Wire.requestFrom(address, (uint8_t)4);
-
-  uint32_t result = 0;
-
-  if (Wire.available() >= 4) {
-    result |= ((uint32_t)Wire.read() << 24);
-    result |= ((uint32_t)Wire.read() << 16);
-    result |= ((uint32_t)Wire.read() << 8);
-    result |= ((uint32_t)Wire.read());
-  }
-
-  return result;
-}
+#define MP3_I2C_ADDRESS 50 // 0x32 - Địa chỉ mặc định
 
 void setup() {
   Serial.begin(115200);
-  Wire.begin();
 
+  // Khởi tạo module MP3
+  mp3.begin(MP3_I2C_ADDRESS);
   delay(1000);
 
-  // Phát bài hát số 00001 trong thư mục Root
-  // Mode ID = 56
-  // Value = 1
+  // Thiết lập âm lượng
+  Serial.println("Set volume 20");
+  if (mp3.setVolume(20) == 1) {
+    Serial.println("Set volume OK");
+  } else {
+    Serial.println("Set volume ERROR");
+  }
 
-  Serial.println("Phat bai hat so 1...");
-
-  sendI2CCommand(MP3_I2C_ADDRESS, 56, 1);
-
-  delay(3000);
-
-  // Đọc âm lượng hiện tại
-  // Mode ID = 58
-
-  uint32_t volume = readI2CValue(
-    MP3_I2C_ADDRESS,
-    58
-  );
-
-  Serial.print("Am luong hien tai: ");
-  Serial.println(volume);
 }
 
 void loop() {
+  uint8_t volume;
+  MKE_I2C_MP3::Status status;
+  // Phát file số 00001 trong thư mục Root
+  if (mp3.playTrack(1) == 1) {
+    Serial.println("Playing track 2...");
+  } else {
+    Serial.println("Play track ERROR");
+  }
+  delay(1000);
+
+  // Đọc trạng thái phát
+  Serial.print("Status: ");
+  Serial.println(mp3.getStatus(status));
+
+  // Đọc âm lượng hiện tại
+  Serial.print("Volume: ");
+  Serial.println(mp3.getVolume(volume));
+
+  // Chờ 5 giây
+  delay(5000);
+
+  // Tạm dừng
+  mp3.pause();
+  Serial.println("Pause");
+
+  // Chờ 2 giây
+  delay(2000);
+
+  // Tiếp tục phát
+  mp3.play();
+  Serial.println("Play");
 }
 ```
 ## Bộ thư viện MKE_I2C_MP3
