@@ -202,7 +202,7 @@ void setup() {
 
   // Thiết lập âm lượng
   Serial.println("Set volume 20");
-  if (mp3.setVolume(20) == 1) {
+  if (mp3.setVolume(20) == 0) {
     Serial.println("Set volume OK");
   } else {
     Serial.println("Set volume ERROR");
@@ -214,7 +214,7 @@ void loop() {
   uint8_t volume;
   MKE_I2C_MP3::Status status;
   // Phát file số 00001 trong thư mục Root
-  if (mp3.playTrack(1) == 1) {
+  if (mp3.playTrack(1) == 0) {
     Serial.println("Playing track 2...");
   } else {
     Serial.println("Play track ERROR");
@@ -366,7 +366,8 @@ void setup() {
 }
 
 void loop() {
-
+  uint8_t volume;
+  MKE_I2C_MP3::Status status;
   // Phát file số 00001 trong thư mục Root
   if (mp3.playTrack(1) == 0) {
     Serial.println("Playing track 2...");
