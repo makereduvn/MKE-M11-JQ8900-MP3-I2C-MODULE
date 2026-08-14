@@ -418,14 +418,14 @@ void loop() {
 - Trong **Tools / Library Manager**, tìm và cài đặt bộ thư viện tổng hợp **"MKE_ONE" by MakerEdu.vn**
 - Mở chương trình mẫu tại **File / Examples / MKE_ONE / Module / MKE_M11_I2C_JQ8900_MP3**
 - Cấu hình board mạch tương ứng là **Arduino Uno / ESP32**, chọn đúng cổng **COM Port** của mạch và nhấn **Upload** để nạp chương trình.
-- Cấp nguồn 5VDC cho mạch, kết nối chân SDA và SCL của Sensor với chân điều khiển được khai báo trong chương trình.
+- Cấp nguồn 5VDC cho mạch, kết nối chân SDA và SCL của Module với chân điều khiển được khai báo trong chương trình.
 - Xem kết quả mạch hoạt động theo chương trình đã nạp.
 
 ### Hướng dẫn lập trình với Micro:bit (kéo thả khối)
 
 - Khởi động [Microsoft MakeCode](https://makecode.microbit.org/) và **Import** chương trình theo đường link sau: `https://github.com/makereduvn/mke_m11_i2c_jq8900_mp3_microbit/`
 - Kết nối mạch Micro:bit và **Download** chương trình.
-- Cấp nguồn 5VDC cho mạch, kết nối chân SDA và SCL của Sensor với chân điều khiển được khai báo trong chương trình.
+- Cấp nguồn 5VDC cho mạch, kết nối chân SDA và SCL của Module với chân điều khiển được khai báo trong chương trình.
 - Xem kết quả mạch hoạt động theo chương trình đã nạp.
 
 Nếu bắt đầu tự án mới cần cài đặt Extension **MKE_ONE_MICROBIT** trên [Microsoft MakeCode](https://makecode.microbit.org/) theo [hướng dẫn tại đây](https://github.com/makereduvn/MKE_ONE_MICROBIT). Sau khi cài đặt thành công, các khối lệnh của Extension **MKE_ONE_MICROBIT** sẽ xuất hiện trong danh sách block và sẵn sàng để sử dụng.
