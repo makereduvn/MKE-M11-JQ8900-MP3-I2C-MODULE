@@ -137,7 +137,7 @@ MKE-M11 tích hợp một nút nhấn cho phép kiểm tra và thay đổi đị
 - Nhấn và giữ nút khoảng **6 giây liên tục**.
 - Module sẽ phát thông báo: "Khôi phục cài đặt gốc hoàn tất", địa chỉ I2C được đưa về mặc định là 50 (0x32).
 
-## Giao thức I2C
+## Giao thức I2C cấp thấp
 
 MKE-M11 giao tiếp với vi điều khiển chính (Master) thông qua giao thức I2C. Địa chỉ mặc định: 50 (0x32)
 
