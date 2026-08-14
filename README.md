@@ -181,7 +181,7 @@ MKE-M11 giao tiếp với vi điều khiển chính (Master) thông qua giao th�
 | `62` | `MP3_Play_Insert_Track_in_Folder_Number` | Chèn file từ thư mục số | `Folder × 1000 + File` |
 | `63` | `MP3_Play_Insert_Track_in_Folder_MF` | Chèn file từ thư mục `MF` | Số file |
 
-### Chương trình mô tả giao tiếp I2C trên Arduino
+### Chương trình mô tả giao tiếp I2C cấp thấp trên Arduino
 
 Ví dụ dưới đây phát file số `00001` trong thư mục Root và đọc âm lượng hiện tại của module.
 
